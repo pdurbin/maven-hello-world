@@ -64,3 +64,6 @@ Running `java -jar target/my-app-1.0-SNAPSHOT.jar` requires http://maven.apache.
 If you need help at any time
 
 Running `mvn --help`  will display the maven help menu
+
+
+The emojis for git are amazing! :trollface:
