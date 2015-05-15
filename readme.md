@@ -1,11 +1,14 @@
+
 # A simple, minimal Maven example: hello world
+
+PB
 
 To create the files in this git repo we've already run `mvn archetype:generate` from http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-Now, to print "Hello World!", type either...
-
+Now, to print "Hello World!", type one of the following below: 
+...
     cd my-app
     mvn compile
     java -cp target/classes com.mycompany.app.App
@@ -57,3 +60,12 @@ Running `mvn package` does a compile and creates the target directory, including
 Running `mvn clean compile exec:java` requires http://mojo.codehaus.org/exec-maven-plugin/
 
 Running `java -jar target/my-app-1.0-SNAPSHOT.jar` requires http://maven.apache.org/plugins/maven-shade-plugin/
+
+If you need help at any time
+
+Running `mvn --help`  will display the maven help menu
+
+
+The emojis for git are amazing! :trollface:
+
+I love Git
