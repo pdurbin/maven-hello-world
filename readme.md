@@ -1,13 +1,15 @@
 
 # A simple, minimal Maven example: hello world
 
-PB
+##### Creating files in the repo
 
 To create the files in this git repo we've already run `mvn archetype:generate` from http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-Now, to print "Hello World!", type either...
+##### Printing "Hello World!"
+
+To print "Hello World!", type either
 
     cd my-app
     mvn compile
@@ -19,7 +21,7 @@ or...
     mvn package
     java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 
-Running `mvn clean` will get us back to only the source Java and the `pom.xml`:
+##### Running `mvn clean` will get us back to only the source Java and the `pom.xml`:
 
     murphy:my-app pdurbin$ mvn clean --quiet
     murphy:my-app pdurbin$ ack -a -f
@@ -27,7 +29,7 @@ Running `mvn clean` will get us back to only the source Java and the `pom.xml`:
     src/main/java/com/mycompany/app/App.java
     src/test/java/com/mycompany/app/AppTest.java
 
-Running `mvn compile` produces a class file:
+##### Running `mvn compile` produces a class file:
 
     murphy:my-app pdurbin$ mvn compile --quiet
     murphy:my-app pdurbin$ ack -a -f
@@ -39,7 +41,7 @@ Running `mvn compile` produces a class file:
     murphy:my-app pdurbin$ java -cp target/classes com.mycompany.app.App
     Hello World!
 
-Running `mvn package` does a compile and creates the target directory, including a jar:
+##### Running `mvn package` does a compile and creates the target directory, including a jar:
 
     murphy:my-app pdurbin$ mvn clean --quiet
     murphy:my-app pdurbin$ mvn package > /dev/null
@@ -57,10 +59,10 @@ Running `mvn package` does a compile and creates the target directory, including
     murphy:my-app pdurbin$ java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
     Hello World!
 
-Running `mvn clean compile exec:java` requires http://mojo.codehaus.org/exec-maven-plugin/
+##### Running `mvn clean compile exec:java` requires http://mojo.codehaus.org/exec-maven-plugin/
 
-Running `java -jar target/my-app-1.0-SNAPSHOT.jar` requires http://maven.apache.org/plugins/maven-shade-plugin/
+##### Running `java -jar target/my-app-1.0-SNAPSHOT.jar` requires http://maven.apache.org/plugins/maven-shade-plugin/
 
-If you need help at any time
+### If you need help at any time
 
-Running `mvn --help`  will display the maven help menu
+##### Running `mvn --help`  will display the maven help menu
