@@ -6,15 +6,11 @@ To create the files in this git repo we've already run `mvn archetype:generate` 
 
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-<<<<<<< HEAD
+
 ##### Printing "Hello World!"
 
 To print "Hello World!", type either
 
-=======
-Now, to print "Hello World!", type one of the following below: 
-...
->>>>>>> upstream/master
     cd my-app
     mvn compile
     java -cp target/classes com.mycompany.app.App
@@ -69,10 +65,7 @@ or...
 
 ### If you need help at any time
 
-<<<<<<< HEAD
 ##### Running `mvn --help`  will display the maven help menu
-=======
-Running `mvn --help`  will display the maven help menu
 
 -The emojis for git are amazing! :trollface:
 
@@ -131,8 +124,3 @@ Node | Description
 groupId|This is an Id of project's group. This is generally unique amongst an organization or a project. For example, a banking group com.company.bank has all bank related projects.
 artifactId|This is an Id of the project.This is generally name of the project. For example, consumer-banking. Along with the groupId, the artifactId defines the artifact's location within the repository.
 version|This is the version of the project.Along with the groupId, It is used within an artifact's repository to separate versions from each other. For example:<br><li> com.company.bank:consumer-banking:1.0</li> <br><li> com.company.bank:consumer-banking:1.1.</li>
-
-
-
-
->>>>>>> upstream/master
