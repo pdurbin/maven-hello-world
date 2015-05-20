@@ -23,6 +23,8 @@ Running `mvn clean` will get us back to only the source Java and the `pom.xml`:
     murphy:my-app pdurbin$ mvn clean --quiet
     murphy:my-app pdurbin$ ack -a -f
     pom.xml
+    
+// updated
     src/main/java/com/mycompany/app/App.java
     src/test/java/com/mycompany/app/AppTest.java
 
