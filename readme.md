@@ -1,4 +1,4 @@
-# A simple, minimal Maven example: hello world
+# I changed this: hello world
 
 PB
 
