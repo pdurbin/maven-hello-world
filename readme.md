@@ -1,13 +1,16 @@
 # I changed this: hello world
 
-PB
+##### Creating files in the repo
 
 To create the files in this git repo we've already run `mvn archetype:generate` from http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-Now, to print "Hello World!", type one of the following below: 
-...
+
+##### Printing "Hello World!"
+
+To print "Hello World!", type either
+
     cd my-app
     mvn compile
     java -cp target/classes com.mycompany.app.App
@@ -18,7 +21,7 @@ or...
     mvn package
     java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 
-Running `mvn clean` will get us back to only the source Java and the `pom.xml`:
+##### Running `mvn clean` will get us back to only the source Java and the `pom.xml`:
 
     murphy:my-app pdurbin$ mvn clean --quiet
     murphy:my-app pdurbin$ ack -a -f
@@ -26,7 +29,7 @@ Running `mvn clean` will get us back to only the source Java and the `pom.xml`:
     src/main/java/com/mycompany/app/App.java
     src/test/java/com/mycompany/app/AppTest.java
 
-Running `mvn compile` produces a class file:
+##### Running `mvn compile` produces a class file:
 
     murphy:my-app pdurbin$ mvn compile --quiet
     murphy:my-app pdurbin$ ack -a -f
@@ -38,7 +41,7 @@ Running `mvn compile` produces a class file:
     murphy:my-app pdurbin$ java -cp target/classes com.mycompany.app.App
     Hello World!
 
-Running `mvn package` does a compile and creates the target directory, including a jar:
+##### Running `mvn package` does a compile and creates the target directory, including a jar:
 
     murphy:my-app pdurbin$ mvn clean --quiet
     murphy:my-app pdurbin$ mvn package > /dev/null
@@ -56,13 +59,13 @@ Running `mvn package` does a compile and creates the target directory, including
     murphy:my-app pdurbin$ java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
     Hello World!
 
-Running `mvn clean compile exec:java` requires http://mojo.codehaus.org/exec-maven-plugin/
+##### Running `mvn clean compile exec:java` requires http://mojo.codehaus.org/exec-maven-plugin/
 
-Running `java -jar target/my-app-1.0-SNAPSHOT.jar` requires http://maven.apache.org/plugins/maven-shade-plugin/
+##### Running `java -jar target/my-app-1.0-SNAPSHOT.jar` requires http://maven.apache.org/plugins/maven-shade-plugin/
 
-If you need help at any time
+### If you need help at any time
 
-Running `mvn --help`  will display the maven help menu
+##### Running `mvn --help`  will display the maven help menu
 
 -The emojis for git are amazing! :trollface:
 
@@ -121,7 +124,3 @@ Node | Description
 groupId|This is an Id of project's group. This is generally unique amongst an organization or a project. For example, a banking group com.company.bank has all bank related projects.
 artifactId|This is an Id of the project.This is generally name of the project. For example, consumer-banking. Along with the groupId, the artifactId defines the artifact's location within the repository.
 version|This is the version of the project.Along with the groupId, It is used within an artifact's repository to separate versions from each other. For example:<br><li> com.company.bank:consumer-banking:1.0</li> <br><li> com.company.bank:consumer-banking:1.1.</li>
-
-
-
-
