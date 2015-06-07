@@ -26,6 +26,8 @@ or...
     murphy:my-app pdurbin$ mvn clean --quiet
     murphy:my-app pdurbin$ ack -a -f
     pom.xml
+    
+// updated
     src/main/java/com/mycompany/app/App.java
     src/test/java/com/mycompany/app/AppTest.java
 
