@@ -7,12 +7,33 @@
   <version>1.0-SNAPSHOT</version>
   <name>my-app</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+      <!-- This property will be set by the Maven Dependency plugin -->
+      <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker</artifactId>
+        <version>1.9.4</version>
+    </dependency>
+    <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker-qual</artifactId>
+        <version>1.9.4</version>
+    </dependency>
+    <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>jdk8</artifactId>
+        <version>1.9.4</version>
     </dependency>
   </dependencies>
   <build>
@@ -54,6 +75,35 @@
 	    </configuration>
 	  </execution>
 	</executions>
+      </plugin>
+      <plugin>
+          <!-- This plugin will set the properties values using dependency information -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.3</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>properties</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
+      <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+              <source>1.8</source>
+              <target>1.8</target>
+              <fork>true</fork>
+              <!-- Add all the checkers you want to enable here -->
+              <annotationProcessors>
+                  <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs>
+                  <!-- location of the annotated JDK, which comes from a Maven dependency -->
+                  <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
+              </compilerArgs>
+          </configuration>
       </plugin>
     </plugins>
   </build>
