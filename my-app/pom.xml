@@ -10,7 +10,7 @@
 
   <properties>
       <!-- This property will be set by the Maven Dependency plugin -->
-      <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
+      <annotatedJdk>${org.checkerframework:jdk7:jar}</annotatedJdk>
   </properties>
 
   <dependencies>
@@ -32,7 +32,7 @@
     </dependency>
     <dependency>
         <groupId>org.checkerframework</groupId>
-        <artifactId>jdk8</artifactId>
+        <artifactId>jdk7</artifactId>
         <version>1.9.4</version>
     </dependency>
   </dependencies>
@@ -92,8 +92,8 @@
       <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
+              <source>1.7</source>
+              <target>1.7</target>
               <fork>true</fork>
               <!-- Add all the checkers you want to enable here -->
               <annotationProcessors>
