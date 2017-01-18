@@ -4,7 +4,7 @@ branches:
   - /^RELEASE.*$/
 language: java
 before_install:
-- . ~/scripts/handle-maven-versions
+- ls -la
 before_cache:
   - rm -rf $HOME/.m2/repository/
 cache:
