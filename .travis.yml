@@ -12,3 +12,7 @@ before_cache:
 cache:
   directories:
   - $HOME/.m2/repository
+script:
+   - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash mvn release:prepare && mvn release:perform; fi'
+   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash mvn test -B; fi'
+   
