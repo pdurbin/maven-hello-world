@@ -3,6 +3,8 @@ branches:
   - master
   - /^RELEASE.*$/
 language: java
+jdk:
+- oraclejdk8
 before_install:
 - ls -la
 before_cache:
