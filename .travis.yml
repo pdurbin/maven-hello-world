@@ -1,0 +1,12 @@
+branches:
+  only:
+  - master
+  - /^RELEASE.*$/
+language: java
+before_install:
+- . ~/scripts/handle-maven-versions
+before_cache:
+  - rm -rf $HOME/.m2/repository/
+cache:
+  directories:
+  - $HOME/.m2/repository
