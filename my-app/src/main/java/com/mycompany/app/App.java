@@ -1,6 +1,6 @@
 package com.mycompany.app;
 
-// adding a comment to make a test PR
+// editing this comment to amend my PR
 
 /**
  * Hello world!
