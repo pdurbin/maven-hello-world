@@ -1,7 +1,7 @@
 # A simple, minimal Maven example: hello world
 
 
-# This is a dummy change, to create a PR
+# This is a third dummy change, to create a PR
 
 
 To create the files in this git repo we've already run `mvn archetype:generate` from http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
