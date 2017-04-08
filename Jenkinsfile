@@ -22,7 +22,7 @@ mvn -Dmaven.test.failure.ignore=true install'''
     }
     stage('Report') {
       steps {
-        junit 'target/surefire-reports/**/*.xml'
+        junit 'my-app/target/surefire-reports/**/*.xml'
         archiveArtifacts 'target/*.jar'
       }
     }
