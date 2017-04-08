@@ -10,12 +10,14 @@ pipeline {
       steps {
         sh '''echo PATH = ${PATH}
 echo M2_HOME = ${M2_HOME}
+cd my-app
 mvn clean'''
       }
     }
     stage('Build') {
       steps {
-        sh 'mvn -Dmaven.test.failure.ignore=true install'
+        sh '''cd my-app
+mvn -Dmaven.test.failure.ignore=true install'''
       }
     }
     stage('Report') {
