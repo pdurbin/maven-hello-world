@@ -16,7 +16,7 @@ pipeline {
                 echo 'Hello, JDK'
                 sh 'java -version'
                 sh 'pwd && ls -al'
-                sh 'cd my_app && java -cp target/classes com.mycompany.app.App'
+                sh 'cd my-app && java -cp target/classes com.mycompany.app.App'
             }
         }
     }
