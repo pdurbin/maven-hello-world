@@ -7,6 +7,7 @@ pipeline {
                 echo 'Hello, Maven'
                 sh 'mvn --version'
                 sh 'cd my-app && mvn compile'
+                sh 'pwd && ls -al'
             }
         }
         stage('Example Test') {
@@ -14,6 +15,7 @@ pipeline {
             steps {
                 echo 'Hello, JDK'
                 sh 'java -version'
+                sh 'pwd && ls -al'
                 sh 'cd my_app && java -cp target/classes com.mycompany.app.App'
             }
         }
