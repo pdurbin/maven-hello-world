@@ -18,4 +18,10 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            archive 'my-app/**'
+        }
+    }
+
 }
