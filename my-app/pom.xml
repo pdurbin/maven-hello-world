@@ -12,6 +12,12 @@
       <!-- This property will be set by the Maven Dependency plugin -->
       <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
   </properties>
+	<properties>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+</properties>
+<build>
+    <finalName>${finalName}</finalName>
+ </build>
 
   <dependencies>
     <dependency>
