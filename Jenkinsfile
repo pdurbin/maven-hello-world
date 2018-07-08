@@ -9,6 +9,6 @@ node('master') {
 
 stage 'Test'
 node('master') {
-       sh "${mvnHome}/bin/mvn test -Diterations=10"
+       sh "mvn test -Diterations=10"
     }
 
