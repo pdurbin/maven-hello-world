@@ -46,12 +46,4 @@ workflows:
       - build:
           filters:
             tags:
-              only: /.*/
-      - deploy:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^prod*/
-            branches:
-              ignore: /.*/
+              only: /^dev/
