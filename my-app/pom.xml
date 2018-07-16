@@ -108,3 +108,4 @@
     </plugins>
   </build>
 </project>
+ <!-- Add all the checkers you want to enable here -->
