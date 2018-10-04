@@ -1,0 +1,33 @@
+queue:
+  name: Hosted
+  demands: maven
+
+steps:
+- task: Maven@1
+  displayName: 'Maven $(mavenPOMFile)'
+  inputs:
+    publishJUnitResults: false
+
+
+- task: CopyFiles@2
+  displayName: 'Copy File to: $(TargetFolder)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+
+    Contents: '**/*.war'
+
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+
+- task: CopyFiles@2
+  displayName: 'Copy ARM templates'
+  inputs:
+    SourceFolder: src
+
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts: drop'
+
+
