@@ -31,7 +31,7 @@ Running `mvn compile` produces a class file:
     pom.xml
     src/main/java/com/mycompany/app/App.java
     src/test/java/com/mycompany/app/AppTest.java
-    target/classes/com/mycompany/app/App.class
+    target/classes/com/mycompany/app/App.classcheck
     murphy:my-app pdurbin$ 
     murphy:my-app pdurbin$ java -cp target/classes com.mycompany.app.App
     Hello World!
