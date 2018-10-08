@@ -35,7 +35,7 @@ Running `mvn compile` produces a class file:
     murphy:my-app pdurbin$ 
     murphy:my-app pdurbin$ java -cp target/classes com.mycompany.app.App
     Hello World!
-//mark!!
+//mark!
 Running `mvn package` does a compile and creates the target directory, including a jar:
 
     murphy:my-app pdurbin$ mvn clean --quiet
