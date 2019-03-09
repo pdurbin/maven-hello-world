@@ -7,8 +7,7 @@ checkout scm
  stage ("Build")
   {
    bat 'echo %PATH%'
-   bat 'cd my-app'
-   bat "mvn package"
+   bat 'cd my-app && mvn package'
   }
 }
 
