@@ -62,5 +62,10 @@ pipeline {
                 sh 'mvn clean verify'
             }
         }
+        stage('Security Scanning') {
+            steps{
+                defscanerhome=tool 'SonarQubeScanner'
+                }
+        }
     }
 }
