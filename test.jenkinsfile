@@ -64,7 +64,7 @@ pipeline {
         }
         stage('Security Scanning') {
             steps{
-                defscanerhome=tool 'SonarQubeScanner'
+                def scanerhome=tool 'SonarQubeScanner'
                 }
         }
     }
