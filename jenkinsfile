@@ -1,0 +1,72 @@
+pipeline 
+{
+ agent any&lt;
+ 
+tools{
+        jdk 'jdk1.7'
+        maven 'mvn3.5.0'
+}
+
+environment {
+    registry = ''
+    NexusDockerRegistryUrl = "http://34.227.105.25:8081"
+    registryCredential = 'nexus'
+  }
+
+stages {
+  stage ('Git Checkout') {
+   steps{
+     script {
+     git branch: 'master',
+     git 'https://github.com/anandjainsa/maven-hello-world.git';
+   }
+  }
+ }
+ stage('Maven version') {
+            steps {
+              script {
+                echo "Hello, Maven"
+                sh "mvn --version" // Runs a Bourne shell script, typically on a Unix node
+            }
+          } 
+         }
+
+        stage('Maven Install') {
+            steps {
+                script {
+                    withMaven(globalMavenSettingsConfig: "$mavenConfig", jdk: "$JDKVersion", maven: "$mavenLocation") {
+                        try {
+                            sh "mvn clean install"
+                        } catch (Exception err) {
+                            echo 'Maven clean install failed'
+                            currentBuild.result = 'FAILURE'
+                        } finally {
+                            publishHTMLReports('Reports')
+                        }
+                    }
+                }
+            }
+        }
+
+   stage('Building image') {
+      steps{
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+
+stage('Push Docker Images to Nexus Registry'){ 
+  steps{
+    script {
+        sh 'docker login -u user -p password NexusDockerRegistryUrl'
+        sh 'docker push NexusDockerRegistryUrl/Imagename}'
+        sh 'docker rmi $(docker images --filter=reference="NexusDockerRegistryUrl/ImageName*" -q)'
+        sh 'docker logout NexusDockerRegistryUrl'
+      }
+   }
+  }
+}
+
+
+
