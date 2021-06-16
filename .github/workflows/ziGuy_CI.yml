@@ -32,6 +32,5 @@ jobs:
 
       name: Show result
       shell: bash
-        run: |
-          value=`ls -l staging`
+        run: value=`ls -l staging`
           echo The result is $value
