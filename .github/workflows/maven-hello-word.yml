@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: maven-hello-word
 
 # Controls when the workflow will run
 on:
@@ -34,4 +34,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: PowerShell script
+        uses: Amadevus/pwsh-script@v2.0.1
+        with:
+         script: Get-Content D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml
+      
         
