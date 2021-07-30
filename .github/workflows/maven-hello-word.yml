@@ -27,7 +27,12 @@ jobs:
       
       - name: PowerShell
         shell: pwsh
-        run: Test-Path pom.xml
+        run: | 
+            if(Test-Path pom.xml){
+              write-host 'True'
+            }else{
+              write-host 'False'
+            }
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
