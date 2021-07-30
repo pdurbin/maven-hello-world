@@ -28,7 +28,7 @@ jobs:
       - name: PowerShell
         shell: pwsh
         run: | 
-            if(Test-Path pom.xml){
+            if(Test-Path D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml){
               write-host 'True'
             }else{
               write-host 'False'
