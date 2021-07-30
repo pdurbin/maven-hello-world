@@ -32,6 +32,7 @@ jobs:
             [xml]$xmlDoc = Get-Content $xmlFileName
             $xmlDoc.project.version = "1.0.1"
             $xmlDoc.Save("D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml")
+            write-host $xmlDoc.project.version
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
