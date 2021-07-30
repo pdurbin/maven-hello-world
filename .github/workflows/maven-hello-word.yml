@@ -1,4 +1,3 @@
-# This is a basic workflow to help you get started with Actions
 
 name: maven-hello-word
 
@@ -28,7 +27,7 @@ jobs:
         run: | 
             $xmlFileName = 'D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml'
             [xml]$xmlDoc = Get-Content $xmlFileName
-            $xmlDoc.project.version = "1.0.1"
+            $xmlDoc.project.version = "1.0.1-SNAPSHOT"
             $xmlDoc.Save("D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml")
             write-host $xmlDoc.project.version
             
@@ -47,6 +46,4 @@ jobs:
         with:
           name: maven-hello-word-artifact
           path: 'D:/a/maven-hello-world/maven-hello-world/my-app/target'
-    # Duration after which artifact will expire in days. 0 means using default retention.
-#Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
           retention-days: 30
