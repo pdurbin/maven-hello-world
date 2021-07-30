@@ -36,7 +36,7 @@ jobs:
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
-         java-version: '11'
+         java-version: '8'
          distribution: 'adopt'
       - name: Build with Maven
         working-directory: "D:/a/maven-hello-world/maven-hello-world/my-app"
