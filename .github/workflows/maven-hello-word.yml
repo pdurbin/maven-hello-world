@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -28,11 +28,10 @@ jobs:
       - name: PowerShell
         shell: pwsh
         run: | 
-            if(Test-Path D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml){
-              write-host 'True'
-            }else{
-              write-host 'False'
-            }
+            $xmlFileName = 'D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml'
+            [xml]$xmlDoc = Get-Content $xmlFileName
+            $xmlDoc.project.version = "1.0.1"
+            $xmlDoc.Save("D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml")
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
