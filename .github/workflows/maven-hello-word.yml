@@ -20,9 +20,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
       - name: PowerShell
@@ -33,11 +31,28 @@ jobs:
             $xmlDoc.project.version = "1.0.1"
             $xmlDoc.Save("D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml")
             write-host $xmlDoc.project.version
+            
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
          java-version: '8'
          distribution: 'adopt'
+         
       - name: Build with Maven
         working-directory: "D:/a/maven-hello-world/maven-hello-world/my-app"
         run: mvn compile
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: maven-hello-word-artifact
+          path: D:/a/maven-hello-world/maven-hello-world/my-app/target
+          Available Options:
+            warn: Output a warning but do not fail the action
+            #error: Fail the action with an error message
+            #ignore: Do not output any warnings or errors, the action does not fail
+            if-no-files-found: # optional, default is warn
+    # Duration after which artifact will expire in days. 0 means using default retention.
+Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
+
+            retention-days: 30
