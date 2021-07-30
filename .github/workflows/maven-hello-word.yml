@@ -45,5 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.4
         with:
           name: maven-hello-word-artifact
-          path: 'D:/a/maven-hello-world/maven-hello-world/my-app/target'
+          path: |
+              'D:/a/maven-hello-world/maven-hello-world/my-app/target'
+              'D:/a/maven-hello-world/maven-hello-world/my-app/Dockerfile'
           retention-days: 30
