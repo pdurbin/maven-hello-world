@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.4
         with:
           name: maven-hello-word-artifact
-          path: D:/a/maven-hello-world/maven-hello-world/my-app/target
+          path: 'D:/a/maven-hello-world/maven-hello-world/my-app/target'
           Available Options:
             warn: Output a warning but do not fail the action
             #error: Fail the action with an error message
@@ -55,4 +55,4 @@ jobs:
     # Duration after which artifact will expire in days. 0 means using default retention.
 Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
 
-            retention-days: 30
+retention-days: '30'
