@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: PowerShell
+      - name: Update version
         shell: pwsh
         run: | 
             $xmlFileName = 'D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml'
@@ -41,11 +41,13 @@ jobs:
         working-directory: "D:/a/maven-hello-world/maven-hello-world/my-app"
         run: mvn package
         
+      - name: Copy Docker file
+        shell: cmd
+        run: xcopy D:/a/maven-hello-world/maven-hello-world/my-app/Dockerfile D:/a/maven-hello-world/maven-hello-world/my-app/target
+        
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: maven-hello-word-artifact
-          path: |
-              D:/a/maven-hello-world/maven-hello-world/my-app/target
-              D:/a/maven-hello-world/maven-hello-world/my-app/Dockerfile
+          path: D:/a/maven-hello-world/maven-hello-world/my-app/target
           retention-days: 30
