@@ -48,7 +48,7 @@ jobs:
           path: D:\a\maven-hello-world\maven-hello-world\my-app\target
           retention-days: 30
           
-  build Docker:
+  build_and_push_Docker:
    runs-on: ubuntu-latest
    
    steps:
