@@ -21,10 +21,10 @@ jobs:
       - name: Update version
         shell: pwsh
         run: | 
-            $xmlFileName = "$RUNNER_WORKSPACE/my-app/pom.xml"
+            $xmlFileName = "D:\a\maven-hello-world\maven-hello-world\my-app\pom.xml"
             [xml]$xmlDoc = Get-Content $xmlFileName
             $xmlDoc.project.version = "1.0.1-SNAPSHOT"
-            $xmlDoc.Save("$RUNNER_WORKSPACE/my-app/pom.xml")
+            $xmlDoc.Save("D:\a\maven-hello-world\maven-hello-world\my-app\pom.xml")
             write-host $xmlDoc.project.version
             
       - name: Set up JDK 8
@@ -34,16 +34,16 @@ jobs:
          distribution: 'adopt'
          
       - name: Build with Maven
-        working-directory: "$RUNNER_WORKSPACE/my-app"
+        working-directory: D:\a\maven-hello-world\maven-hello-world\my-app
         run: mvn package
         
       - name: Copy Docker file
         shell: cmd
-        run: xcopy "$RUNNER_WORKSPACE\my-app\Dockerfile" "$RUNNER_WORKSPACE\my-app\target"
+        run: xcopy "D:\a\maven-hello-world\maven-hello-world\my-app\Dockerfile" "D:\a\maven-hello-world\maven-hello-world\my-app\target"
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: maven-hello-word-artifact
-          path: $RUNNER_WORKSPACE/my-app/target
+          path: D:\a\maven-hello-world\maven-hello-world\my-app\target
           retention-days: 30
