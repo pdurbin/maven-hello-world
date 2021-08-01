@@ -1,22 +1,18 @@
 
 name: maven-hello-word
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  
   workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  
   build:
-    # The type of runner that the job will run on
     runs-on: windows-latest
 
     steps:
@@ -25,10 +21,10 @@ jobs:
       - name: Update version
         shell: pwsh
         run: | 
-            $xmlFileName = 'D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml'
+            $xmlFileName = '$RUNNER_WORKSPACE/my-app/pom.xml'
             [xml]$xmlDoc = Get-Content $xmlFileName
             $xmlDoc.project.version = "1.0.1-SNAPSHOT"
-            $xmlDoc.Save("D:/a/maven-hello-world/maven-hello-world/my-app/pom.xml")
+            $xmlDoc.Save("$RUNNER_WORKSPACE/my-app/pom.xml")
             write-host $xmlDoc.project.version
             
       - name: Set up JDK 8
@@ -38,16 +34,16 @@ jobs:
          distribution: 'adopt'
          
       - name: Build with Maven
-        working-directory: "D:/a/maven-hello-world/maven-hello-world/my-app"
+        working-directory: "$RUNNER_WORKSPACE/my-app"
         run: mvn package
         
       - name: Copy Docker file
         shell: cmd
-        run: xcopy "D:\a\maven-hello-world\maven-hello-world\my-app\Dockerfile" "D:\a\maven-hello-world\maven-hello-world\my-app\target"
+        run: xcopy "$RUNNER_WORKSPACE\my-app\Dockerfile" "$RUNNER_WORKSPACE\my-app\target"
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: maven-hello-word-artifact
-          path: D:/a/maven-hello-world/maven-hello-world/my-app/target
+          path: $RUNNER_WORKSPACE/my-app/target
           retention-days: 30
