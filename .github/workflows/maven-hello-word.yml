@@ -69,7 +69,7 @@ jobs:
          context: ./
          file: ./Dockerfile
          push: true
-         tag: ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
+         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
          
      - name: Image digest
        run: echo ${{ steps.docker_build.outputs.digest }}
