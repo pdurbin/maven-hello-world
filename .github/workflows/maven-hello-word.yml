@@ -21,7 +21,7 @@ jobs:
       - name: Update version
         shell: pwsh
         run: | 
-            $xmlFileName = $RUNNER_WORKSPACE/my-app/pom.xml
+            $xmlFileName = "$RUNNER_WORKSPACE/my-app/pom.xml"
             [xml]$xmlDoc = Get-Content $xmlFileName
             $xmlDoc.project.version = "1.0.1-SNAPSHOT"
             $xmlDoc.Save("$RUNNER_WORKSPACE/my-app/pom.xml")
