@@ -8,6 +8,9 @@ on:
     branches: [ master ]
 
   workflow_dispatch:
+env:
+ JAR_VERSION : 1.0.1-SNAPSHOT
+ 
 jobs:
    #This job is build the application and upload artifact to GitHub Repo 
    Build_and_Upload_Artifact:
@@ -17,12 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Update version
+      - name: Update Jar version
         shell: pwsh
         run: | 
             $xmlFileName = "D:\a\maven-hello-world\maven-hello-world\my-app\pom.xml"
             [xml]$xmlDoc = Get-Content $xmlFileName
-            $xmlDoc.project.version = "1.0.1-SNAPSHOT"
+            $xmlDoc.project.version = "${env:JAR_VERSION}"
             $xmlDoc.Save("D:\a\maven-hello-world\maven-hello-world\my-app\pom.xml")
             write-host $xmlDoc.project.version
             
