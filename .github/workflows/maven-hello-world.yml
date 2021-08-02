@@ -36,7 +36,7 @@ jobs:
          distribution: 'adopt'
          
       - name: Build with Maven
-        working-directory: D:\a\maven-hello-world\maven-hello-world\my-app
+        working-directory: $env:GITHUB_WORKSPACE\my-app
         run: mvn package
         
       - name: Upload a Build Artifact
