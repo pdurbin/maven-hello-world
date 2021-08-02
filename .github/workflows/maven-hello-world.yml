@@ -49,7 +49,7 @@ jobs:
    #This job is builds Dockerfile, creates Docker Image, push it to DockerHub, downloading the Image and running it 
    Build_Push_Pull_Run_Docker_Artifact:
      #if: ${{ false }}
-     needs: [Build_and_Upload_Artifact]
+     #needs: [Build_and_Upload_Artifact]
      runs-on: ubuntu-latest
    
      steps:
