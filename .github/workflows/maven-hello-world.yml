@@ -1,18 +1,16 @@
 
-name: maven-hello-word
+name: maven-hello-world
 
 on:
-  
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-  
   workflow_dispatch:
 jobs:
-  
-  build:
+   #This job is build the application and upload artifact to GitHub Repo 
+   Build_and_Upload_Artifact:
     if: ${{ false }}
     runs-on: windows-latest
 
