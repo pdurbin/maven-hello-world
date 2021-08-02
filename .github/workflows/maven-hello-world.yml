@@ -85,5 +85,5 @@ jobs:
          
      - name: Pull and run Docker
        run: |
-         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{env:JAR_VERSION}}
-         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{env:JAR_VERSION}}
+         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}
+         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}
