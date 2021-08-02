@@ -73,12 +73,12 @@ jobs:
      - name: Build Docker
        run: |
         cd /home/runner/work/maven-hello-world/maven-hello-world/my-app
-        docker build -t my-app/maven-hello-word:1.0.1-SNAPSHOT .
-        docker push my-app/maven-hello-word:1.0.1-SNAPSHOT
+        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT .
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
 
         
          
      - name: Pull and run Docker
        run: |
-         docker pull my-app/maven-hello-word:1.0.1-SNAPSHOT
-         docker run my-app/maven-hello-word:1.0.1-SNAPSHOT
+         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
+         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
