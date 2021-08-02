@@ -14,7 +14,7 @@ env:
 jobs:
    #This job is build the application and upload artifact to GitHub Repo 
    Build_and_Upload_Artifact:
-    if: ${{ false }}
+    #if: ${{ false }}
     runs-on: windows-latest
 
     steps:
