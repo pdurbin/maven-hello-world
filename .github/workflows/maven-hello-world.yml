@@ -81,9 +81,9 @@ jobs:
          context: ${env:GITHUB_WORKSPACE}/my-app
          file: ${env:GITHUB_WORKSPACE}/my-app/Dockerfile
          push: true
-         tags: '${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}'
+         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
          
      - name: Pull and run Docker
        run: |
-         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}
-         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}
+         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
+         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
