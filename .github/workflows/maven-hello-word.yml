@@ -72,7 +72,7 @@ jobs:
        uses: docker/build-push-action@v2
        with:
          context: ./
-         file: ./Dockerfile
+         file: /home/runner/work/maven-hello-world/maven-hello-world/my-app/Dockerfile
          push: true
          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
          
