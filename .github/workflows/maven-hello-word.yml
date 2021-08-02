@@ -78,5 +78,5 @@ jobs:
          
      - name: Pull and run Docker
        run: |
-        docker pull vadimbuksteindockerid/maven-hello-word
-        docker run vadimbuksteindockerid/maven-hello-word
+        docker pull vadimbuksteindockerid/maven-hello-word:1.0.1-SNAPSHOT
+        docker vadimbuksteindockerid/maven-hello-word:1.0.1-SNAPSHOT
