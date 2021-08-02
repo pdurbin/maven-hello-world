@@ -42,7 +42,7 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: maven-hello-word-artifact
+          name: maven-hello-world-artifact
           path: ${env:GITHUB_WORKSPACE}\my-app\target
           retention-days: 30
    
