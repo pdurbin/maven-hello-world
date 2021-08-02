@@ -58,10 +58,10 @@ jobs:
      - name: Update Jar version
        shell: pwsh
        run: | 
-            $xmlFileName = "${env:GITHUB_WORKSPACE}\my-app\pom.xml"
+            $xmlFileName = "/home/runner/work/maven-hello-world/maven-hello-world/my-app/pom.xml"
             [xml]$xmlDoc = Get-Content $xmlFileName
             $xmlDoc.project.version = "${env:JAR_VERSION}"
-            $xmlDoc.Save("${env:GITHUB_WORKSPACE}\my-app\pom.xml")
+            $xmlDoc.Save("/home/runner/work/maven-hello-world/maven-hello-world/my-app/pom.xml")
             write-host "The version updated to " $xmlDoc.project.version
      
      - name: Login to Docker Hub
