@@ -36,14 +36,14 @@ jobs:
          distribution: 'adopt'
          
       - name: Build with Maven
-        working-directory: ${{env:GITHUB_WORKSPACE}}\my-app
+        working-directory: D:\a\maven-hello-world\maven-hello-world\my-app
         run: mvn package
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: maven-hello-world-artifact
-          path: ${env:GITHUB_WORKSPACE}\my-app\target
+          path: D:\a\maven-hello-world\maven-hello-world\my-app\target
           retention-days: 30
    
    #This job is builds Dockerfile, creates Docker Image, push it to DockerHub, downloading the Image and running it 
@@ -81,9 +81,9 @@ jobs:
          context: ${env:GITHUB_WORKSPACE}/my-app
          file: ${env:GITHUB_WORKSPACE}/my-app/Dockerfile
          push: true
-         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}
+         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{env:JAR_VERSION}}
          
      - name: Pull and run Docker
        run: |
-         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}
-         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${env:JAR_VERSION}
+         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{env:JAR_VERSION}}
+         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{env:JAR_VERSION}}
