@@ -69,7 +69,7 @@ jobs:
             echo $newVersion
             echo "JAR_VERSION=$newVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
             cd /home/runner/work/maven-hello-world/maven-hello-world/my-app
-            mvn versions:set -DnewVersion=$newVersion
+            mvn versions:set -DnewVersion='$newVersion'
      
      - name: Login to Docker Hub
        uses: docker/login-action@v1
