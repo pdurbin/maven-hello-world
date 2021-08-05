@@ -67,7 +67,7 @@ jobs:
             $convertedToInt+=1
             $newVersion = $currentVersionSplited[0]+"."+$currentVersionSplited[1]+"."+$convertedToInt+"-SNAPSHOT"
             echo $newVersion
-            echo "::set-output name=JAR_VERSION::${newVersion}"
+            echo "JAR_VERSION=${newVersion}" >> $GITHUB_ENV
             cd /home/runner/work/maven-hello-world/maven-hello-world/my-app
             mvn versions:set -DnewVersion=${{ env.JAR_VERSION }}
      
