@@ -56,3 +56,7 @@ jobs:
        run: |
          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}
          docker run -i --entrypoint "sh" ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }} -c "java -cp my-app-${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}.jar com.mycompany.app.App"
+         
+     - name: Commit and push changes
+       run:
+        git add /home/runner/work/maven-hello-world/maven-hello-world/my-app/pom.xml
