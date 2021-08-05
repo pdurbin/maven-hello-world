@@ -9,8 +9,8 @@ on:
     #branches: [ updatejarversion ]
 
   workflow_dispatch:
-env:
- JAR_VERSION : ''
+#env:
+ #JAR_VERSION : ''
  
 jobs:
    #This job is build the application and upload artifact to GitHub Repo 
@@ -67,9 +67,9 @@ jobs:
             $convertedToInt+=1
             $newVersion = $currentVersionSplited[0]+"."+$currentVersionSplited[1]+"."+$convertedToInt+"-SNAPSHOT"
             echo $newVersion
-            echo "env.JAR_VERSION=$newVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+            echo "JAR_VERSION=$newVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
             cd /home/runner/work/maven-hello-world/maven-hello-world/my-app
-            mvn versions:set -DnewVersion=${{ env.JAR_VERSION }}
+            mvn versions:set -DnewVersion=$JAR_VERSION
      
      - name: Login to Docker Hub
        uses: docker/login-action@v1
