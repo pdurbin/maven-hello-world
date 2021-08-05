@@ -59,6 +59,8 @@ jobs:
          
      - name: Commit and push changes
        run: |
+        git config --global user.email "vbukstein@gmail.com"
+        git config --global user.name "Vadim Bukstein"
         git add /home/runner/work/maven-hello-world/maven-hello-world/my-app/pom.xml
         git commit -m "Adding updated POM for the project"
         git push
