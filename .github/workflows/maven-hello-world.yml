@@ -55,4 +55,4 @@ jobs:
      - name: Pull and run Docker
        run: |
          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}
-         docker run -i --entrypoint "/bin/bash" ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }} sh -c "java -cp my-app-${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}.jar com.mycompany.app.App"
+         docker run -i --entrypoint "sh" ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }} -c "java -cp my-app-${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}.jar com.mycompany.app.App"
