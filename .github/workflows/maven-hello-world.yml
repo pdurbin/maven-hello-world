@@ -61,7 +61,7 @@ jobs:
        run: | 
             $xmlFileName = "/home/runner/work/maven-hello-world/maven-hello-world/my-app/pom.xml"
             [xml]$xmlDoc = Get-Content $xmlFileName
-            $currentVersion = ($xmlFileName.project.version).Split("-")
+            $currentVersion = ($xmlDoc.project.version).Split("-")
             $currentVersionSplited = $currentVersion.Split(".")
             $convertedToInt = [int]$currentVersionSplited[2]
             $convertedToInt+=1
