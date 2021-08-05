@@ -82,3 +82,7 @@ jobs:
        run: |
          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
          docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
+         
+     - name: Commit and push changes
+       run:
+        git add /home/runner/work/maven-hello-world/maven-hello-world/my-app/pom.xml
