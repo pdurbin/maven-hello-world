@@ -60,3 +60,5 @@ jobs:
      - name: Commit and push changes
        run:
         git add /home/runner/work/maven-hello-world/maven-hello-world/my-app/pom.xml
+        git commit -m "Adding updated POM for the project"
+        git push
