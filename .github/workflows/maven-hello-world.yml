@@ -13,40 +13,6 @@ env:
  JAR_VERSION : ''
  
 jobs:
-   #This job is build the application and upload artifact to GitHub Repo 
-   Build_and_Upload_Artifact:
-    if: ${{ false }}
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Update Jar version
-        shell: pwsh
-        run: | 
-            $xmlFileName = "${env:GITHUB_WORKSPACE}\my-app\pom.xml"
-            [xml]$xmlDoc = Get-Content $xmlFileName
-            $xmlDoc.project.version = "${env:JAR_VERSION}"
-            $xmlDoc.Save("${env:GITHUB_WORKSPACE}\my-app\pom.xml")
-            write-host "The version updated to " $xmlDoc.project.version
-            
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-         java-version: '8'
-         distribution: 'adopt'
-         
-      - name: Build with Maven
-        working-directory: D:\a\maven-hello-world\maven-hello-world\my-app
-        run: mvn package
-        
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2.2.4
-        with:
-          name: maven-hello-world-artifact
-          path: D:\a\maven-hello-world\maven-hello-world\my-app\target
-          retention-days: 30
-   
    #This job is builds Dockerfile, creates Docker Image, push it to DockerHub, downloading the Image and running it 
    Build_Push_Pull_Run_Docker_Artifact:
      #if: ${{ false }}
