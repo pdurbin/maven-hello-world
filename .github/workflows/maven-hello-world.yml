@@ -82,11 +82,11 @@ jobs:
        run: |
         cd /home/runner/work/maven-hello-world/maven-hello-world/my-app
         docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }} .
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}
 
         
          
      - name: Pull and run Docker
        run: |
-         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
-         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:1.0.1-SNAPSHOT
+         docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}
+         docker run ${{ secrets.DOCKER_HUB_USERNAME }}/maven-hello-word:${{ steps.update-jar-version-ps.outputs.JAR_VERSION }}
