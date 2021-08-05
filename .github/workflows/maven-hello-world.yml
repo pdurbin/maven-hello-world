@@ -3,9 +3,11 @@ name: maven-hello-world
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [ updatejarversion ]
+    paths-ignore: '.github/workflows/**.yml'
+    paths: 'my-app/src/main/java/com/mycompany/app/**.java'
+  #pull_request:
+    #branches: [ updatejarversion ]
 
   workflow_dispatch:
 env:
