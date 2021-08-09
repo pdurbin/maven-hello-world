@@ -32,7 +32,7 @@ jobs:
           
       - name: Build and push Docker images
         run: |
-          docker build ./my-app -f Dockerfile -t jonyjalfon94/my-app:1.0.${{ github.run_number }}
+          docker build ./my-app -f Dockerfile -e PATCH_VERSION=${{ github.run_number }}  -t jonyjalfon94/my-app:1.0.${{ github.run_number }}
           
           
 
