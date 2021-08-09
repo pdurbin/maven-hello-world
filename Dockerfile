@@ -1,4 +1,4 @@
-ENV PATCH_VERSION=1.0.1
+ARG PATCH_VERSION
 FROM maven:3.6.3-jdk-8 AS build-env
 WORKDIR /app
 
