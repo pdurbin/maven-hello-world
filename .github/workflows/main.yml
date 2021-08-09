@@ -1,0 +1,13 @@
+# This is a basic workflow to help you get started with Actions
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2.6.1
+        context: my-app/
