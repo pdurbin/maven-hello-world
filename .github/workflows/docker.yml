@@ -16,16 +16,24 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-      - name: Build with Maven
+          
+      - name: Change jar version
         run: |
           cd my-app
           mvn versions:set -DnewVersions=0.0.${{ github.run_number }}
+          
+      - name: Maven Build
+        run: |
+          cd my-app
           mvn -B clean package --file pom.xml
           mkdir artifact && cp target/*.jar artifact
+          
+      - name: Upload Artifact
       - uses: actions/upload-artifact@v2
         with:
           name: my-app
           path: my-app/artifact
+          
       - name: Build and push Docker images
         run: |
           docker build ./my-app -f Dockerfile -t jonyjalfon94/my-app:1.0.${{ github.run_number }}
