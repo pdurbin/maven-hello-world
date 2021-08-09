@@ -25,3 +25,8 @@ jobs:
       run: |
         cd my-app
         mvn -e -B package --file pom.xml
+        mkdir artifact && cp target/*.jar artifact
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: artifact
