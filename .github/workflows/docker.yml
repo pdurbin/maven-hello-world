@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build and push Docker images
-        uses: docker/build-push-action@v2.6.1
-        with:
-          context: my-app/
+        run: |
+          docker build ./my-app -t jonyjalfon94/my-app:lalala
+          
+          
+
