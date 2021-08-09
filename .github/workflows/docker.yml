@@ -17,15 +17,10 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           
-      - name: Change jar version
-        run: |
-          cd my-app
-          mvn versions:set -DnewVersions=0.0.${{ github.run_number }}
-          
       - name: Maven Build
         run: |
           cd my-app
-          mvn -B clean package --file pom.xml
+          mvn -B  clean package versions:set -DnewVersions=0.0.${{ github.run_number }}
           mkdir artifact && cp target/*.jar artifact
           
       - name: Upload Artifact
