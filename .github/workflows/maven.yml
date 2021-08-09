@@ -24,4 +24,4 @@ jobs:
     - name: Build with Maven
       run: |
         cd my-app
-        mvn -B package --file pom.xml
+        mvn -e -B package --file pom.xml
