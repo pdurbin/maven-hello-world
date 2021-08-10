@@ -32,7 +32,7 @@ jobs:
           
       - name: Build and push Docker images
         run: |
-          DDOCKER_BUILDKIT=1 docker build ./my-app -f Dockerfile --build-arg PATCH_VERSION=${{ github.run_number }} -t jonyjalfon94/my-app:1.0.${{ github.run_number }}
+          DOCKER_BUILDKIT=1 docker build ./my-app -f Dockerfile -t jonyjalfon94/my-app:1.0.${{ github.run_number }}
       
       - name: Test container
         run: |
