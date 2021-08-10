@@ -39,11 +39,12 @@ jobs:
         run: |
           docker run jonyjalfon94/my-app:1.0.${{ github.run_number }}
 
-      - name: Push Docker Image
-        uses: docker/login-action@v1.10.0
+      - uses: docker/login-action@v1.10.0
         with:
           username: jonyjalfon94
           password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Push Docker Image
         run: |
           docker push jonyjalfon94/my-app:1.0.${{ github.run_number }}
           
