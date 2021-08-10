@@ -1,13 +1,6 @@
-FROM maven:3.6.3-jdk-8 AS build-env
-ARG PATCH_VERSION
-WORKDIR /app
-COPY . ./
-RUN mvn versions:set -Dversion=1.0.${PATCH_VERSION}
-RUN mvn -B clean package
-
-
+# Base Alpine Linux based image with OpenJDK JRE only
 FROM openjdk:8-jre-alpine
-ARG PATCH_VERSION
-WORKDIR /app
-COPY --from=build-env /app/target/my-app.1.0.${PATCH_VERSION}.jar ./my-app.jar
+# copy application WAR (with libraries inside)
+COPY target/my-app*.jar /app.jar
+# specify default command
 CMD ["/usr/bin/java", "-jar", "/app/my-app.jar"]
