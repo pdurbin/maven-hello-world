@@ -17,22 +17,22 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           
-      - name: Maven Build
-        run: |
-          cd my-app
-          mvn versions:set -DnewVersion=0.0.${{ github.run_number }}
-          mvn -B  clean package 
-          mkdir artifact && cp target/*.jar artifact
+#       - name: Maven Build
+#         run: |
+#           cd my-app
+#           mvn versions:set -DnewVersion=0.0.${{ github.run_number }}
+#           mvn -B  clean package 
+#           mkdir artifact && cp target/*.jar artifact
           
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-app
-          path: my-app/artifact
+#       - name: Upload Artifact
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: my-app
+#           path: my-app/artifact
           
       - name: Build and push Docker images
         run: |
-          docker build ./my-app -f Dockerfile --build-arg PATCH_VERSION=${{ github.run_number }} -t jonyjalfon94/my-app:1.0.${{ github.run_number }}
+          DDOCKER_BUILDKIT=1 docker build ./my-app -f Dockerfile --build-arg PATCH_VERSION=${{ github.run_number }} -t jonyjalfon94/my-app:1.0.${{ github.run_number }}
       
       - name: Test container
         run: |
