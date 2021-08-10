@@ -20,7 +20,7 @@ jobs:
       - name: Maven Build
         run: |
           cd my-app
-          mvn versions:set -DnewVersion=0.0.${{ github.run_number }}
+          mvn versions:set -DnewVersion=1.0.${{ github.run_number }}
           mvn -B  clean package 
           mkdir artifact && cp target/*.jar artifact
           
