@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2.6.1
         with:
           context: './my-app'
-          file: '../Dockerfile'
+          file: './my-app/Dockerfile'
           push: true
           tags: 'jonyjalfon94/my-app:1.0.${{ github.run_number }}'
 #         run: |
