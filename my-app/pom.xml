@@ -80,7 +80,7 @@
           <!-- This plugin will set the properties values using dependency information -->
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.9.0</version>
+           <version>3.6.0</version>
           <executions>
               <execution>
                   <goals>
@@ -91,6 +91,7 @@
       </plugin>
       <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
+           <version>3.6.0</version>
           <configuration>
               <source>1.8</source>
               <target>1.8</target>
