@@ -83,6 +83,7 @@
           <version>2.3</version>
           <executions>
               <execution>
+                <?m2e execute onConfiguration?>
                   <goals>
                       <goal>properties</goal>
                   </goals>
