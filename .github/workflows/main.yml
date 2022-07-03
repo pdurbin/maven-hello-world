@@ -23,7 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Compile the Project
-        working-directory: maven-hello-world/my-app
+        working-directory: my-app/
         run: mvn compile
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
