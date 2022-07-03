@@ -33,7 +33,10 @@ jobs:
       - name: Compile the Project
         working-directory: my-app
         run: mvn -B compile
-        
+      - name: Build and test project with Maven
+        run: mvn -B package --file pom.xml
+    
+  
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
