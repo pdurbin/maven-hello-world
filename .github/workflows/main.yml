@@ -32,7 +32,7 @@ jobs:
       - run: npm install -g bats
       - run: bats -v
       - name: Compile the Project
-        working-directory: my-app
+        working-directory: my-app/
         run: |
           java -cp target/classes com.mycompany.app.App
           mvn compile
