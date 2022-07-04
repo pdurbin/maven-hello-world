@@ -17,6 +17,7 @@ jobs:
 
     - name: Bump jar version
       id: bump
+      working-directory: my-app
       run: |
         POMPATH=my-app
         OLD_VERSION=$(cd $POMPATH && mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
