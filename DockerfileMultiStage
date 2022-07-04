@@ -10,6 +10,6 @@ FROM openjdk:8-jdk-alpine
 RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 ARG artifact
 USER or
-COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar ${artifact}.jar
+COPY --from=BUILD_IMAGE /my-app/target/my-app/*.jar ${artifact}.jar
 ENV ART=${artifact}.jar
 CMD exec java -jar ${ART}
