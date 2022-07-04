@@ -9,4 +9,4 @@ RUN mvn package
 FROM openjdk:8-jdk-alpine
 COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar .
 RUN ls
-CMD exec java -jar my-app*.jar
+CMD exec java -jar my-app*.jar com.mycompany.app.App
