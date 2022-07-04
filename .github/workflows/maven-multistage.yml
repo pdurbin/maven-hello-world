@@ -45,6 +45,9 @@ jobs:
 
     steps:
     - name: Run container
+      env:
+        USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
-        docker login -u $USERNAME -p $PASSWORD --password-stdin,
+        docker login -u $USERNAME -p $PASSWORD --password-stdin
         docker run oralush49/or_repo:${{needs.build.outputs.jar_version}}
