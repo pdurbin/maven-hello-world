@@ -13,4 +13,4 @@ USER alush
 COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar ${artifact}.jar
 RUN ls -la
 ENV ART=${artifact}.jar
-CMD exec java -jar ${ART}
+CMD java -jar ${ART}
