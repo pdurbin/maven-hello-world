@@ -19,7 +19,7 @@ jobs:
       id: bump
       run: |
         POMPATH=maven-hello-world
-        OLD_VERSION=$(cd $POMPATH && mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        OLD_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         BUMP_MODE="none"
         old="$OLD_VERSION"
         parts=( ${old//./ } )
