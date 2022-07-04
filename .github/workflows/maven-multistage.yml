@@ -34,12 +34,11 @@ jobs:
         echo ${{ steps.bump.outputs.jar_version }}
         docker build . -t oralush49/or_repo:${{ steps.bump.outputs.jar_version }} -f DockerfileMultiStage
         
-    - name: Login to DockerHub
-      env:
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
         DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
-      run: |
-        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin     
       
     - name: Docker push
       run: |
