@@ -1,14 +1,13 @@
 name: Maven Package - Multi stage docker
 
-on:
-  [push]
+on: workflow_dispatch
 
 jobs:
+
   build:
-    runs-on: ubuntu-20.04
-    permissions:
-      contents: read
-      packages: write
+  
+    runs-on: ubuntu-latest
+    
     outputs:
       jar_version: ${{ steps.bump.outputs.jar_version }}
 
@@ -37,8 +36,8 @@ jobs:
         
     - name: Login to DockerHub
       env:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       
