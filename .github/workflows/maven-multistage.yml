@@ -18,7 +18,7 @@ jobs:
     - name: Bump jar version
       id: bump
       run: |
-        POMPATH=maven-hello-world
+        POMPATH=$(git rev-parse --show-toplevel)
         OLD_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         BUMP_MODE="none"
         old="$OLD_VERSION"
