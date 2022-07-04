@@ -8,5 +8,9 @@ RUN mvn package
 
 # copy into the contanier and run it
 FROM openjdk:8-jdk-alpine
-COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar .
-CMD java -jar my-app*.jar
+ARG fullname
+RUN addgroup -S appgroup && adduser -S zorki -G appgroup
+USER zorki
+COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar ${fullname}.jar
+ENV fulljar=${fullname}.jar
+CMD exec java -jar ${fulljar}
