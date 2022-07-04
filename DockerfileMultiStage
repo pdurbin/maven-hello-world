@@ -1,8 +1,9 @@
 # build artifact with maven
 FROM maven:3-jdk-8-alpine AS BUILD_IMAGE
 ADD . /my-app
+COPY /my-app/src/ .
 WORKDIR /my-app
-RUN mvn compile
+RUN mvn compiley
 RUN mvn package
 
 # copy into the contanier and run it
