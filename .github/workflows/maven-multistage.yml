@@ -29,22 +29,18 @@ jobs:
         mvn -q versions:set -DnewVersion="${NEW_VERSION}" --file $POMPATH/pom.xml
         echo ::set-output name=jar_version::${NEW_VERSION}
 
-    - name: Docker build
-      run: |
-        echo ${{ steps.bump.outputs.jar_version }}
-        docker build . -t oralush49/or_repo:${{ steps.bump.outputs.jar_version }} -f DockerfileMultiStage
-        
     - name: Login to Docker Hub
       env:
         USERNAME: ${{ secrets.DOCKER_USERNAME }}
         PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
         docker login -u $USERNAME -p $PASSWORD
+    - name: Docker build
+      run: docker build . -t oralush49/or_repo:${{ steps.bump.outputs.jar_version }} -f DockerfileMultiStage
     - name: Docker push
-      run: |
-        docker push oralush49/or_repo:${{ steps.bump.outputs.jar_version }}
+      run: docker push oralush49/or_repo:${{ steps.bump.outputs.jar_version }}
   run:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: [build]
 
     steps:
