@@ -8,4 +8,4 @@ RUN mvn package
 # copy into the contanier and run it
 FROM openjdk:8-jdk-alpine
 COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar .
-CMD exec java -jar my-app*.jar
+CMD exec java -jar target/my-app*.jar
