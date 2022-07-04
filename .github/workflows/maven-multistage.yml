@@ -46,4 +46,5 @@ jobs:
     steps:
     - name: Run container
       run: |
+        docker login -u $USERNAME -p $PASSWORD
         docker run oralush49/or_repo:${{needs.build.outputs.jar_version}}
