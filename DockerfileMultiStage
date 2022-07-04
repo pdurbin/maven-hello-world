@@ -9,4 +9,5 @@ RUN mvn package
 # copy into the contanier and run it
 FROM openjdk:8-jdk-alpine
 COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar .
-RUN ls
+RUN pwd
+CMD exec bash
