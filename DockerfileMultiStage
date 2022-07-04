@@ -11,5 +11,6 @@ ARG artifact
 RUN addgroup -S appgroup && adduser -S alush -G appgroup
 USER alush
 COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar ${artifact}.jar
+RUN ls -la
 ENV ART=${artifact}.jar
 CMD exec java -jar ${ART}
