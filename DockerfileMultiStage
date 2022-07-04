@@ -1,14 +1,11 @@
 # build artifact with maven
 FROM maven:3-jdk-8-alpine as BUILD_IMAGE
-ENV APP_HOME=/root/dev/myapp/
-RUN mkdir -p $APP_HOME/src/main/java
-WORKDIR $APP_HOME
-COPY . .
+ADD . /my-app
+WORKDIR /my-app
 RUN mvn compile
 RUN mvn package
 
 # copy into the contanier and run it
 FROM openjdk:8-jdk-alpine
-WORKDIR /root/
 COPY --from=BUILD_IMAGE /root/dev/myapp/my-app/target/my-app*.jar .
 CMD exec java -jar my-app*.jar
