@@ -7,10 +7,5 @@ RUN mvn package
 
 # copy into the contanier and run it
 FROM openjdk:8-jdk-alpine
-ARG artifact
-RUN addgroup -S appgroup && adduser -S alush -G appgroup
-USER alush
-COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar ${artifact}.jar
-RUN ls -la
-ENV ART=${artifact}.jar
-CMD java -jar ${ART}
+COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar .
+CMD java -jar my-app*.jar
