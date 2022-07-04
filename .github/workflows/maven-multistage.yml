@@ -39,9 +39,9 @@ jobs:
       run: docker build . -t oralush49/or_repo:${{ steps.bump.outputs.jar_version }} -f DockerfileMultiStage
     - name: Docker push
       run: docker push oralush49/or_repo:${{ steps.bump.outputs.jar_version }}
-  run:
-    runs-on: ubuntu-latest
-    needs: [build]
+#   run:
+#     runs-on: ubuntu-latest
+#     needs: [build]
 
 #     steps:
 #     - name: Run container
