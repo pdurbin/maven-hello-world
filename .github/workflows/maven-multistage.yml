@@ -17,7 +17,6 @@ jobs:
 
     - name: Bump jar version
       id: bump
-      working-directory: my-app
       run: |
         POMPATH=my-app
         OLD_VERSION=$(cd $POMPATH && mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
@@ -33,7 +32,9 @@ jobs:
 
     - name: Docker build
       run: |
+        echo ${{ steps.bump.outputs.jar_version }}
         docker build . -t oralush49/or_repo:${{ steps.bump.outputs.jar_version }} -f DockerfileMultiStage
+        
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
