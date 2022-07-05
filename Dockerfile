@@ -12,5 +12,4 @@ COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar .
 RUN ls && pwd
 # ENV ART=${artifact}.jar
 # RUN echo ${ART}
-RUN java -cp my-app*.jar com.mycompany.app.App
 CMD exec java -jar my-app*.jar
