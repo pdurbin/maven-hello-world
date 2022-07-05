@@ -12,7 +12,7 @@ ARG fullname
 RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 USER zorki
 # COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar .
-COPY --from=build /my-app/target/${fullname}.jar ${fullname}.jar
+COPY --from=BUILD_IMAGE /my-app/target/${fullname}.jar ${fullname}.jar
 RUN ls && pwd
 # ENV ART=${artifact}.jar
 # RUN echo ${ART}
