@@ -12,7 +12,7 @@ jobs:
 #       jar_version: ${{ steps.bump.outputs.jar_version }}
 
     steps:
-#     - uses: actions/checkout@v2
+     
 
 #     - name: Bump jar version
 #       id: bump
@@ -31,7 +31,7 @@ jobs:
         
 #     - name: set artifact name
 #       run: echo ARTIFACT="my-app-"${{ steps.bump.outputs.jar_version }} >> $GITHUB_ENV
-
+    - uses: actions/checkout@v3
     - name: Login to Docker Hub
       env:
         USERNAME: ${{ secrets.DOCKER_USERNAME }}
