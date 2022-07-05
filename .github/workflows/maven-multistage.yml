@@ -28,8 +28,9 @@ jobs:
         echo "pom.xml at" $POMPATH "will be bumped from" $OLD_VERSION "to" $NEW_VERSION 
         mvn -q versions:set -DnewVersion="${NEW_VERSION}" --file $POMPATH/pom.xml
         echo ::set-output name=jar_version::${NEW_VERSION}
-        - name: set fullname
-        run: echo FULLNAME="my-app"+$NEW_VERSION >> $GITHUB_ENV
+        
+    - name: set artifact name
+      run: echo FULLNAME="my-app"+${{ steps.bump.outputs.jar_version }} >> $GITHUB_ENV
 
     - name: Login to Docker Hub
       env:
