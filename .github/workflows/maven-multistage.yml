@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on: workflow_dispatch
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: upgrade patch version
+      run: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit
+    - name: set version variable
+      run: echo VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_ENV
+    - name: set artifact name
+      run: echo ARTIFACT=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.artifactId -q -DforceStdout) >> $GITHUB_ENV
+    - name: set fullname
+      run: echo FULLNAME="${{ env.ARTIFACT }}-${{ env.VERSION }}" >> $GITHUB_ENV
+
+
+    - name: docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build docker image
+      run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --build-arg fullname=${{ env.FULLNAME }} --tag oralush49/or_repo:${{ env.VERSION }}
+    - name: Docker Push
+      run: docker push oralush49/or_repo:${{ env.VERSION }}
+
+
