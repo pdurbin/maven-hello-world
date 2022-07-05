@@ -23,13 +23,13 @@ jobs:
 
     - name: docker login
       env:
-        DOCKER_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build docker image
-      run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --build-arg fullname=${{ env.FULLNAME }} --tag eladavi/my-app:${{ env.VERSION }}
+      run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --build-arg fullname=${{ env.FULLNAME }} --tag oralush49/or_repo:${{ env.VERSION }}
     - name: Docker Push
-      run: docker push eladavi/my-app:${{ env.VERSION }}
+      run: docker push oralush49/or_repo:${{ env.VERSION }}
 
 
