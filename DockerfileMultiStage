@@ -12,6 +12,6 @@ ARG fullname
 RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 USER zorki
 COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar ${fullname}.jar
-RUN ls
+RUN ls && pwd
 ENV fulljar=${fullname}.jar
 CMD exec java -jar ${fulljar}
