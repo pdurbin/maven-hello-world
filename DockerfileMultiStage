@@ -14,4 +14,4 @@ ENV ART=${artifact}.jar
 RUN echo ${ART}
 RUN java -jar my-app-1.0.1.jar
 RUN java -cp my-app-1.0.1.jar com.mycompany.app.App
-CMD java -cp ${ART} com.mycompany.app.App
+CMD java -jar ${ART}
