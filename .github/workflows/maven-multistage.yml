@@ -30,7 +30,7 @@ jobs:
         echo ::set-output name=jar_version::${NEW_VERSION}
         
     - name: set artifact name
-      run: echo ARTIFACT="my-app-"+${{ steps.bump.outputs.jar_version }} >> $GITHUB_ENV
+      run: echo ARTIFACT="my-app-"${{ steps.bump.outputs.jar_version }} >> $GITHUB_ENV
 
     - name: Login to Docker Hub
       env:
