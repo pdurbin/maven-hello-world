@@ -2,8 +2,8 @@
 FROM maven:3-jdk-8-alpine AS BUILD_IMAGE
 ADD . /my-app
 WORKDIR /my-app
-RUN mvn compile
-RUN mvn package
+RUN mvn -X compile
+RUN mvn -X package
 
 # copy into the contanier and run it
 FROM openjdk:8-jdk-alpine
@@ -13,4 +13,4 @@ RUN ls && pwd
 ENV ART=${artifact}.jar
 RUN echo ${ART}
 RUN java -cp my-app-1.0.1.jar com.mycompany.app.App
-CMD java -jar ${ART}
+CMD exec java -jar ${ART}
