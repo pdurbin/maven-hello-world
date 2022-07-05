@@ -8,29 +8,29 @@ jobs:
   
     runs-on: ubuntu-latest
     
-    outputs:
-      jar_version: ${{ steps.bump.outputs.jar_version }}
+#     outputs:
+#       jar_version: ${{ steps.bump.outputs.jar_version }}
 
     steps:
-    - uses: actions/checkout@v2
+#     - uses: actions/checkout@v2
 
-    - name: Bump jar version
-      id: bump
-      run: |
-        POMPATH=$(git rev-parse --show-toplevel)
-        OLD_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        BUMP_MODE="none"
-        old="$OLD_VERSION"
-        parts=( ${old//./ } )
-        bv=$((parts[2] + 1))
-        NEW_VERSION="${parts[0]}.${parts[1]}.${bv}"
-        echo $parts
-        echo "pom.xml at" $POMPATH "will be bumped from" $OLD_VERSION "to" $NEW_VERSION 
-        mvn -q versions:set -DnewVersion="${NEW_VERSION}" --file $POMPATH/pom.xml
-        echo ::set-output name=jar_version::${NEW_VERSION}
+#     - name: Bump jar version
+#       id: bump
+#       run: |
+#         POMPATH=$(git rev-parse --show-toplevel)
+#         OLD_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+#         BUMP_MODE="none"
+#         old="$OLD_VERSION"
+#         parts=( ${old//./ } )
+#         bv=$((parts[2] + 1))
+#         NEW_VERSION="${parts[0]}.${parts[1]}.${bv}"
+#         echo $parts
+#         echo "pom.xml at" $POMPATH "will be bumped from" $OLD_VERSION "to" $NEW_VERSION 
+#         mvn -q versions:set -DnewVersion="${NEW_VERSION}" --file $POMPATH/pom.xml
+#         echo ::set-output name=jar_version::${NEW_VERSION}
         
-    - name: set artifact name
-      run: echo ARTIFACT="my-app-"${{ steps.bump.outputs.jar_version }} >> $GITHUB_ENV
+#     - name: set artifact name
+#       run: echo ARTIFACT="my-app-"${{ steps.bump.outputs.jar_version }} >> $GITHUB_ENV
 
     - name: Login to Docker Hub
       env:
@@ -39,9 +39,9 @@ jobs:
       run: |
         docker login -u $USERNAME -p $PASSWORD
     - name: Docker build
-      run: docker build . -f DockerfileMultiStage --build-arg artifact=${{ env.ARTIFACT }} -t oralush49/or_repo:${{ env.ARTIFACT }}
+      run: docker build . -f DockerfileMultiStage -t oralush49/or_repo:test
     - name: Docker push
-      run: docker push oralush49/or_repo:${{ env.ARTIFACT }}
+      run: docker push oralush49/or_repo:test
 #   run:
 #     runs-on: ubuntu-latest
 #     needs: [build]
