@@ -10,6 +10,6 @@ RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 USER zorki
 COPY --from=build /my-app/target/${fullname}.jar ${fullname}.jar
 ENV fulljar=${fullname}.jar
-RUN ls & pwd
+RUN ls && pwd
 RUN java -jar my-app-2.0.1.jar
 CMD exec java -jar ${fulljar}
