@@ -1,7 +1,6 @@
 # build artifact with maven
 FROM maven:3-jdk-8-alpine AS BUILD_IMAGE
 ADD . /my-app
-COPY /my-app/src/ .
 WORKDIR /my-app
 RUN mvn compile
 RUN mvn package
@@ -12,4 +11,6 @@ ARG artifact
 COPY --from=BUILD_IMAGE /my-app/target/my-app*.jar ${artifact}.jar
 RUN ls && pwd
 ENV ART=${artifact}.jar
+RUN echo ${ART}
+RUN exec java -jar ${ART}
 CMD exec java -jar ${ART}
