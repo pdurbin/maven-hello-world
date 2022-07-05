@@ -39,18 +39,6 @@ jobs:
       run: |
         docker login -u $USERNAME -p $PASSWORD
     - name: Docker build
-      run: docker build . -f DockerfileMultiStage -t oralush49/or_repo:test
+      run: docker build -t oralush49/or_repo:test . -f DockerfileMultiStage
     - name: Docker push
       run: docker push oralush49/or_repo:test
-#   run:
-#     runs-on: ubuntu-latest
-#     needs: [build]
-
-#     steps:
-#     - name: Run container
-#       env:
-#         USERNAME: ${{ secrets.DOCKER_USERNAME }}
-#         PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
-#       run: |
-#         docker login -u $USERNAME -p $PASSWORD --password-stdin
-#         docker run oralush49/or_repo:${{needs.build.outputs.jar_version}}
