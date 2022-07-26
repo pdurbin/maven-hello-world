@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>
 
 	  <!-- Comment to test pr name enforcement -->
+	  <!-- Comment -->
 
   <properties>
       <!-- This property will be set by the Maven Dependency plugin -->
