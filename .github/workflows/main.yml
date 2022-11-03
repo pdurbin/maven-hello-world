@@ -21,10 +21,11 @@ jobs:
     - name: Build project with Maven
       run: |
         mvn release:update-versions -B package --file my-app/pom.xml
+        mkdir proj_target && cp -r target/* proj_target
         
     - name: Gather artifacts
       uses: actions/upload-artifact@v2
       with: 
         name: maven-artifact
-        path: target
+        path: proj_target
         
