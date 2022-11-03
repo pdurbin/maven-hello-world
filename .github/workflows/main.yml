@@ -9,14 +9,24 @@ on:
 jobs:
   build_and_test:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    # create ubuntu container 
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2   # clone all repository file into the container
     - name: Set up JDK 8
       uses: actions/setup-java@v1
       with:
         java-version: 8
 
     - name: Build project with Maven
-      run: mvn -B -X package --file my-app/pom.xml
+      run: |
+        mvn release:update-versions
+        mvn -B -X package --file my-app/pom.xml
+        
+    - name: Gather artifacts
+      uses: actions/upload-artifact@v2
+      with: 
+        name: maven-artifact
+        path: stagin
+        
+        
