@@ -21,12 +21,8 @@ jobs:
     - name: Build project with Maven
       run: |
         mvn release:update-versions
-        mvn -B -X package --file ../../my-app/pom.xml
+        mvn -B -X package --file my-app/pom.xml
         
-    - name: Gather artifacts
-      uses: actions/upload-artifact@v2
-      with: 
-        name: maven-artifact
-        path: stagin
+
         
         
