@@ -21,7 +21,7 @@ jobs:
     - name: Build project with Maven
       run: |
         mvn release:update-versions -B package --file my-app/pom.xml
-        mkdir proj_target && cp -r target/* proj_target
+        mkdir proj_target && cp -r /home/runner/work/maven-hello-world/maven-hello-world/my-app/target/*.jar proj_target
         
     - name: Gather artifacts
       uses: actions/upload-artifact@v2
