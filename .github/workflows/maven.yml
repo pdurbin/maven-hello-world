@@ -20,7 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: my-app/
     steps:
     - uses: actions/checkout@v3
     - name: checkout main code
@@ -31,5 +30,5 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-        mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
         mvn clean package --file pom.xml
+        ls
