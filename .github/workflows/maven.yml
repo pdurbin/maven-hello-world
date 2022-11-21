@@ -1,11 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: calc project CI-CD
 
 on:
@@ -22,17 +14,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: checkout main code
+    - name: Checkout Main Code
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
 
-    - name: Print Version
-      run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
-
-    - name: build+Tag Docker Image
+    - name: Build+Tag Docker Image
       run: |
          docker build -t calc .
 
@@ -42,7 +31,7 @@ jobs:
       with:
         github-token: ${{ secrets.github_token }}
 
-    - name: Login to Docker Hub
+    - name: Login To Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKERHUBNAME }}
@@ -52,6 +41,6 @@ jobs:
       run: |
          docker tag calc ${{ secrets.DOCKERHUBNAME }}/calc:${{steps.bump.outputs.version}}
 
-    - name: push to dockerhub
+    - name: Push To Dockerhub
       run: |
          docker push ${{ secrets.DOCKERHUBNAME }}/calc:${{steps.bump.outputs.version}}
