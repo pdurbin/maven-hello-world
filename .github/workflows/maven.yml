@@ -52,3 +52,7 @@ jobs:
       run: |
          docker tag calc ${{ secrets.DOCKERHUBNAME }}/calc:${{steps.bump.outputs.version}}
          docker images
+
+    - name: push to dockerhub
+    run: |
+       docker push ${{ secrets.DOCKERHUBNAME }}/calc:${{steps.bump.outputs.version}}
