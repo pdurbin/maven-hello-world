@@ -83,4 +83,6 @@ jobs:
           curl -O https://raw.githubusercontent.com/Michaaliev/maven-hello-world/dev/docker.sh
           chmod +x docker.sh
           ./docker.sh
+          docker kill hello_world
+          docker rm hello_world
           '
