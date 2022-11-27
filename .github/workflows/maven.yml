@@ -6,7 +6,7 @@ on:
 
 env:
   image: "michaaliev/hello_world"
-  version: 1.0.0
+  version: '1.0.0'
   
 jobs:
   build:
@@ -80,7 +80,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          docker run --name hello_world -p 80:80 -dit $image:$version sh
+          docker run --name hello_world -p 80:80 -dit $IMAGE:$VERSION sh
           
           '
       
