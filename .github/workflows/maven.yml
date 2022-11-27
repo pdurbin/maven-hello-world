@@ -23,7 +23,7 @@ jobs:
     - name: Build with Maven
       run: | 
         cd ./my-app
-        mvn -B release:update-versions --file pom.xml
+        mvn -B release:update-versions -f pom.xml
         cat pom.xml
       
     - name: Login to Docker Hub
