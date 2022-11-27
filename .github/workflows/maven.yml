@@ -24,7 +24,6 @@ jobs:
       run: | 
         cd ./my-app
         mvn -B release:update-versions -f pom.xml
-        cd ./my-app
         sed -n 7p pom.xml >> temp
         sed 's/[^0-9.]//g' temp >> version
         v=`cat version`
