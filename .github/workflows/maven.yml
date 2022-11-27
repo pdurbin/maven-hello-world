@@ -22,6 +22,12 @@ jobs:
     
     - name: Build with Maven
       run: | 
+        cd my-app
+        sed -n 7p pom.xml >> temp
+        sed 's/[^0-9.]//g' temp >> version
+        v=`cat version`
+        v=`echo "${v%.*}.$((${v##*.}+1))"`
+        echo $v
         mvn -B package --file my-app/pom.xml
         tree
         pwd
