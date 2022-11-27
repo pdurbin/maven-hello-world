@@ -22,13 +22,10 @@ jobs:
     
     - name: Build with Maven
       run: | 
-        cd ./my-app
         mvn -B release:update-versions -f pom.xml
     
     - name: run script
       run: |
-        cd ./my-app
-        
         tree
     
       
