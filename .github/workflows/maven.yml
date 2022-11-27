@@ -36,6 +36,7 @@ jobs:
       with:
           username: ${{ secrets.DOCHUB_USERNAME }}
           password: ${{ secrets.DOCHUB_ACCESS_TOKEN }}
+    
     - name: Build & Tag & Push docker image
       run: |
          cd ./my-app
@@ -43,8 +44,8 @@ jobs:
          sed 's/[^0-9.]//g' temp >> version
          v=`cat version`
          cd ..
-         docker image build -t michaaliev/hello_world:$v . 
-         docker push michaaliev/hello_world:$v
+         docker image build -t michaaliev/hello_world:$IMG_VERS . 
+         docker push michaaliev/hello_world:$IMG_VERS
   
     - name: update version in pom file
       run: |
