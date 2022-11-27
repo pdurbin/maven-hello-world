@@ -70,10 +70,13 @@ jobs:
             PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY  }}
             HOSTNAME : ${{ secrets.EC2_HOSTNAME  }}
             USER_NAME : ${{ secrets.EC2_USER_NAME  }}
+            IMAGE_NAME: ${{ IMG }}
+            IMAGE_VERSION: ${{ IMG_VERS }}
             
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          docker run --name hello_world -p 80:80 -dit sh
+          echo "$IMAGE_NAME"
+          echo "$IMAGE_VERSION"
           
           '
