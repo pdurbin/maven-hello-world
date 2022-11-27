@@ -1,1 +1,1 @@
-docker run --name hello_world -dit michaaliev/hello_world:1.0.1 sh
+docker run --name hello_world -dit michaaliev/hello_world:1.0.2 sh
