@@ -37,6 +37,7 @@ jobs:
       run: |
        cd ./my-app
        mvn versions:set -DnewVersion=$IMG_VERS -B package --file pom.xml
+       tree
     
     - name: Create Script
       run: echo "docker run --name hello_world -dit $IMG:$IMG_VERS sh" > docker.sh 
@@ -79,7 +80,7 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           cd /home/ec2-user
-          wget https://raw.githubusercontent.com/Michaaliev/maven-hello-world/dev/docker.sh
+          curl -O https://raw.githubusercontent.com/Michaaliev/maven-hello-world/dev/docker.sh
           chmod +x docker.sh
           ./docker.sh
           '
