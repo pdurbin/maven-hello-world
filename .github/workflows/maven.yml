@@ -36,7 +36,8 @@ jobs:
     - name: Build with Maven
       run: |
        cd ./my-app
-       mvn versions:set -DnewVersion=$IMG_VERS -B package --file pom.xml
+       mvn versions:set -DnewVersion=$IMG_VERS -B --file pom.xml
+       mvn -B package --file pom.xml
        tree
     
     - name: Create Script
