@@ -59,6 +59,6 @@ jobs:
           SOURCE: "./"
           REMOTE_HOST: "ec2-18-184-87-112.eu-central-1.compute.amazonaws.com"
           REMOTE_USER: "ec2-user"
-          TARGET: "/home/ec2-user/SampleExpressApp"
+          TARGET: "/home/ec2-user/"
       
    
