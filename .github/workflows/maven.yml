@@ -38,10 +38,11 @@ jobs:
          sed -n 7p pom.xml >> temp
          sed 's/[^0-9.]//g' temp >> version
          v=`cat version`
+         echo $v
          cd ..
          ls
-         docker image build -t michaaliev/hello_world:$v . 
-         docker push michaaliev/hello_world:$v
+         docker image build -t michaaliev/hello_world:test . 
+         docker push michaaliev/hello_world:test
          rm temp version
   
     - name: update version in pom file
