@@ -22,6 +22,6 @@ jobs:
     
     - name: Build with Maven
       run: | 
-        
+        mvn -B package --file my-app/pom.xml
         tree
         pwd
