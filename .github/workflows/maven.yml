@@ -20,6 +20,18 @@ jobs:
     - name: clean
       run: mvn -B clean --file my-app/pom.xml
     
+    - name: Checkout Latest Commit
+      uses: actions/checkout@v2
+
+    - name: Bump Version
+      id: bump
+      uses: nnichols/maven-version-bump-action@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Print Version
+      run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
+    
     - name: Build with Maven
       run: | 
         pwd
