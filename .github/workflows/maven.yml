@@ -35,7 +35,7 @@ jobs:
         mvn versions:set -DnewVersion=$v -B package --file pom.xml
         rm temp version
         
-        echo IMAGE_VERSION=$v >> $GITHUB_ENV
+        echo "IMAGE_VERSION=$v" >> $GITHUB_ENV
         echo ${{ env.IMAGE_VERSION }}
         
     - name: Login to Docker Hub
