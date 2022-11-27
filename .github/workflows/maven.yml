@@ -76,7 +76,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          echo "$IMAGE_NAME"
-          echo "$IMAGE_VERSION"
+          echo "$IMAGE_NAME" >> NAME
+          echo "$IMAGE_VERSION" >> VER
           
           '
