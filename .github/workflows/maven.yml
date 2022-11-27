@@ -25,3 +25,7 @@ jobs:
         mvn -B package --file my-app/pom.xml
         tree
         pwd
+        
+    - name: Build docker image with name
+      run: docker image build -t michaaliev/github:my-app .  
+        
