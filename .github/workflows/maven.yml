@@ -79,6 +79,7 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
           '
-          wget https://github.com/Michaaliev/maven-hello-world/blob/dev/docker.sh &&
+          cd /home/ec2-user
+          wget https://github.com/Michaaliev/maven-hello-world/blob/dev/docker.sh
           ./docker.sh
           '
