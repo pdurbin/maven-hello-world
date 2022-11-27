@@ -79,7 +79,8 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           cd /home/ec2-user &&
-            git checkout dev &&
+            git checkout master &&
             git fetch --all &&
-            git checkout origin/master -- docker.sh
+            git reset --hard origin/master &&
+            git pull origin master
           '
