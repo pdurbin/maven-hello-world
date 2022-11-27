@@ -34,7 +34,7 @@ jobs:
         v=`echo "${v%.*}.$((${v##*.}+1))"`
         mvn versions:set -DnewVersion=$v -B package --file pom.xml
         rm temp version
-        ${{ env.version = $v }}
+        echo $v >> env.version
         echo ${{ env.version }}
         
     - name: Login to Docker Hub
