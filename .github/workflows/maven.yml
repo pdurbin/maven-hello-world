@@ -28,11 +28,7 @@ jobs:
     - name: run script
       run: |
         cd ./my-app
-        sed -n 7p pom.xml >> temp
-        sed 's/[^0-9.]//g' temp >> version
-        v=`cat version`
-        echo $v
-        rm temp version
+        
         tree
     
       
