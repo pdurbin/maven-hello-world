@@ -31,7 +31,8 @@ jobs:
         v=`cat version`
         v=`echo "${v%.*}.$((${v##*.}+1))"`
         echo $v
-        mvn -B package --file my-app/pom.xml
+        mvn versions:set -DnewVersion=$v -B package --file pom.xml
+        rm temp version
         tree
         pwd
         
