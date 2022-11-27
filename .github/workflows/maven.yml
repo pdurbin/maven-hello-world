@@ -38,4 +38,13 @@ jobs:
         
     - name: Build docker image with name
       run: docker image build -t michaaliev/github:my-app .  
+      
+    - name: update file and push to remote
+      run: |
+          cd my-app
+          git config --global user.name "Michaaliev"
+          git config --global user.email "Michaaliev1663@gmail.com@gmail.com"
+          git add -A
+          git commit -m "version update"
+          git push
         
