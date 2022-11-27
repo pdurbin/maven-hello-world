@@ -39,7 +39,7 @@ jobs:
        mvn versions:set -DnewVersion=$IMG_VERS -B package --file pom.xml
     
     - name: Create Script
-      run: echo "docker run --name hello_world -dit $IMG:$IMG_VERS sh" >> docker.sh 
+      run: echo "docker run --name hello_world -dit $IMG:$IMG_VERS sh" > docker.sh 
     
     - name: Login to Docker Hub
       uses: docker/login-action@v2
@@ -77,10 +77,8 @@ jobs:
             
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          cd /home/ec2-user &&
-            git checkout master &&
-            git fetch --all &&
-            git reset --hard origin/master &&
-            git pull origin master
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
+          '
+          wget https://github.com/Michaaliev/maven-hello-world/blob/dev/docker.sh &&
+          ./docker.sh
           '
