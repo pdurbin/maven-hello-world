@@ -18,10 +18,10 @@ jobs:
         cache: maven
     
     - name: clean
-      run: mvn clean
+      run: mvn -B clean --file my-app/pom.xml
     
     - name: Build with Maven
       run: | 
-        mvn -B package --file my-app/pom.xml
+        
         tree
         pwd
