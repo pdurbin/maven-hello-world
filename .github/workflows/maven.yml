@@ -38,8 +38,13 @@ jobs:
   
     - name: Build & Tag & Push docker image
       run: |
-         docker image build -t michaaliev/github:my-app . 
-         docker push michaaliev/github:my-app
+         cd ./my-app
+         sed -n 7p pom.xml >> temp
+         sed 's/[^0-9.]//g' temp >> version
+         v=`cat version`
+         cd ..
+         docker image build -t michaaliev/github:$v . 
+         docker push michaaliev/github:$v
   
     - name: update version in pom file
       run: |
