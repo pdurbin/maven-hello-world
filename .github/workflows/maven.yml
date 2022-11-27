@@ -70,7 +70,7 @@ jobs:
             PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY  }}
             HOSTNAME : ${{ secrets.EC2_HOSTNAME  }}
             USER_NAME : ${{ secrets.EC2_USER_NAME  }}
-            IMAGE_NAME: ${{ IMG }}
+            IMAGE_NAME: $IMG
             IMAGE_VERSION: $IMG_VERS
             
         run: |
