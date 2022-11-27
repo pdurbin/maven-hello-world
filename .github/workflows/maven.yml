@@ -19,10 +19,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: clean
+    - name: Clean
       run: mvn -B clean --file my-app/pom.xml
     
-    - name: create var for versioning
+    - name: Create var for versioning
       run: | 
         cd ./my-app
         sed -n 7p pom.xml >> temp
@@ -37,7 +37,10 @@ jobs:
       run: |
        cd ./my-app
        mvn versions:set -DnewVersion=$IMG_VERS -B package --file pom.xml
-       
+    
+    - name: Create Script
+      run: echo "docker run --name hello_world -dit $IMG:$IMG_VERS sh" >> docker.sh 
+    
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -51,10 +54,11 @@ jobs:
   
     - name: update version in pom file
       run: |
-          cd my-app
           git config --global user.name "Michaaliev"
           git config --global user.email "Michaaliev1663@gmail.com@gmail.com"
-          git add pom.xml
+          git add docker.sh
+          cd ./my-app
+          git add pom.xml 
           git commit -m "version update"
           git push
   
@@ -70,10 +74,12 @@ jobs:
             PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY  }}
             HOSTNAME : ${{ secrets.EC2_HOSTNAME  }}
             USER_NAME : ${{ secrets.EC2_USER_NAME  }}
-            IMAGE_NAME: "$IMG:$IMG_VERS"
             
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          echo "${IMAGE_NAME}" >> NAME
+          cd /home/ec2-user &&
+            git checkout dev &&
+            git fetch --all &&
+            git checkout origin/master -- docker.sh
           '
