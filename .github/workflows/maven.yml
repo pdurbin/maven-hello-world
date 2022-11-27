@@ -6,7 +6,8 @@ on:
 
 env:
   image: "michaaliev/hello_world"
-
+  version: 1.0.0
+  
 jobs:
   build:
 
@@ -33,8 +34,9 @@ jobs:
         v=`echo "${v%.*}.$((${v##*.}+1))"`
         mvn versions:set -DnewVersion=$v -B package --file pom.xml
         rm temp version
-        echo "v=${image}" >> $GITHUB_ENV
-      
+        echo "::set-env name=version::$v"
+        echo $version
+        
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -72,11 +74,13 @@ jobs:
             PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY  }}
             HOSTNAME : ${{ secrets.EC2_HOSTNAME  }}
             USER_NAME : ${{ secrets.EC2_USER_NAME  }}
+            IMAGE: $image
+            VERSION: $version
             
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          docker run --name hello_world -p 80:80 -dit $image sh
+          docker run --name hello_world -p 80:80 -dit $image:$version sh
           
           '
       
