@@ -35,7 +35,7 @@ jobs:
         
     - name: Build with Maven
       run: |
-       cd ./my-apps
+       cd ./my-app
        mvn versions:set -DnewVersion=$IMG_VERS -B package --file pom.xml
        
     - name: Login to Docker Hub
