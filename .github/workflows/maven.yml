@@ -43,8 +43,9 @@ jobs:
          sed 's/[^0-9.]//g' temp >> version
          v=`cat version`
          cd ..
-         docker image build -t michaaliev/github:$v . 
-         docker push michaaliev/github:$v
+         docker image build -t michaaliev/hello_world:$v . 
+         docker push michaaliev/hello_world:$v
+         rm temp version
   
     - name: update version in pom file
       run: |
