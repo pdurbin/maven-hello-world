@@ -18,19 +18,10 @@ jobs:
         cache: maven
     
     - name: clean
-      run: mvn -B clean --file my-app/pom.xml 
+      run: mvn clean
     
     - name: Build with Maven
       run: | 
         mvn -B package --file my-app/pom.xml
-        cd my-app
-        rm -r target
-        sed -n 7p pom.xml >> temp
-        sed 's/[^0-9.]//g' temp >> version
-        v=`cat version`
-        v=`echo "${v%.*}.$((${v##*.}+1))"`
-        echo $v
-        mvn versions:set -DnewVersion=$v -B package --file pom.xml
-        rm temp version
         tree
         pwd
