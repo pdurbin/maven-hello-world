@@ -1,10 +1,10 @@
 name: Java CI with Maven
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dev" ]   # trigger pipeline for push to dev branch
     
 env:
-  IMG: michaaliev/hello_world
+  IMG: michaaliev/hello_world   # env variable - docker hub repository 
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 8
+    - name: Set up JDK 8   
       uses: actions/setup-java@v3
       with:
         java-version: '8'
@@ -20,9 +20,9 @@ jobs:
         cache: maven
     
     - name: Clean
-      run: mvn -B clean --file my-app/pom.xml
+      run: mvn -B clean --file my-app/pom.xml   
     
-    - name: Create var for versioning
+    - name: Create var for versioning   # using bash to extract the version from the Pom file and increment the patch num
       run: | 
         cd ./my-app
         sed -n 7p pom.xml >> temp
@@ -30,18 +30,16 @@ jobs:
         v=`cat version`
         v=`echo "${v%.*}.$((${v##*.}+1))"`
         rm temp version
-        echo "IMG_VERS=$v" >> $GITHUB_ENV     
-        echo $IMG_VERS
+        echo "IMG_VERS=$v" >> $GITHUB_ENV     # creating env variable for the incremented version
         
     - name: Build with Maven
       run: |
        cd ./my-app
-       mvn versions:set -DnewVersion=$IMG_VERS -B --file pom.xml
-       mvn -B package --file pom.xml
-       tree
+       mvn versions:set -DnewVersion=$IMG_VERS -B --file pom.xml   # update the pom file in the repository for the new version
+       mvn -B package --file pom.xml   # build with the new version
     
     - name: Create Script
-      run: echo "docker run --name hello_world -dit $IMG:$IMG_VERS sh" > docker.sh 
+      run: echo "docker run --name hello_world -dit $IMG:$IMG_VERS sh" > docker.sh   # creating a script for deploying the app on the EC2
     
     - name: Login to Docker Hub
       uses: docker/login-action@v2
@@ -59,8 +57,7 @@ jobs:
           git config --global user.name "Michaaliev"
           git config --global user.email "Michaaliev1663@gmail.com@gmail.com"
           git add docker.sh
-          cd ./my-app
-          git add pom.xml 
+          git add ./my-app/pom.xml 
           git commit -m "version update"
           git push
   
