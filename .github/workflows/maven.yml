@@ -12,14 +12,14 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 8   
+    - name: Set up JDK 8   # the project is written in java version 8 (as mentioned in the pom file)
       uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
     
-    - name: Clean
+    - name: Clean   # clean to ensure no left over artifacts from previous builds
       run: mvn -B clean --file my-app/pom.xml   
     
     - name: Create var for versioning   # using bash to extract the version from the Pom file and increment the patch num
