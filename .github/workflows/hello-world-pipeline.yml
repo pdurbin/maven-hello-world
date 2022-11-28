@@ -1,6 +1,6 @@
 name: Maven CI/CD
 on:
-  pull_request:
+  push:
      branches: [ dev ]
 env:
   REPOSITORY: doronamsalem/mvn_hello_world
