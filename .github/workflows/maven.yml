@@ -74,11 +74,11 @@ jobs:
             HOSTNAME : ${{ secrets.EC2_HOSTNAME  }}
             USER_NAME : ${{ secrets.EC2_USER_NAME  }}
             
-        run: |
+        run: |  # connecting via ssh to EC2 & downloading the script 'docker.sh' from my scm to the EC2 
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           cd /home/ec2-user
-          curl -O https://raw.githubusercontent.com/Michaaliev/maven-hello-world/dev/docker.sh   # downloading the script 'docker.sh' from my scm to the EC2
+          curl -O https://raw.githubusercontent.com/Michaaliev/maven-hello-world/dev/docker.sh   
           chmod +x docker.sh
           ./docker.sh
           docker kill hello_world    
