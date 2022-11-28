@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8-jdk-alpine3.9
 RUN useradd -m user && passwd -d user
 COPY ./my-app/target/my-app* target/
 USER user
