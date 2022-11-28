@@ -36,25 +36,23 @@ jobs:
       run: |
        cd ./my-app
        mvn versions:set -DnewVersion=$IMG_VERS -B --file pom.xml   # update the pom file in the repository for the new version
-       tree
        mvn -B package --file pom.xml   # build with the new version
-       tree
     
     - name: Create Script
       run: echo "docker run --name hello_world -dit $IMG:$IMG_VERS sh" > docker.sh   # creating a script for deploying the app on the EC2
     
-    - name: Login to Docker Hub
+    - name: Login to Docker Hub   # login to docker hub via username and token entered in the secrets and created env variables
       uses: docker/login-action@v2
       with:
-          username: ${{ secrets.DOCHUB_USERNAME }}
+          username: ${{ secrets.DOCHUB_USERNAME }}   
           password: ${{ secrets.DOCHUB_ACCESS_TOKEN }}
     
     - name: Build & Tag & Push docker image
       run: |
-         docker image build -t $IMG:$IMG_VERS . 
+         docker image build -t $IMG:$IMG_VERS .    # creating an image and giving it a tag michaaliev/hello_world:version
          docker push $IMG:$IMG_VERS
   
-    - name: update version in pom file
+    - name: update version in pom file    # commiting the new updated version pom file to the scm and the docker run script
       run: |
           git config --global user.name "Michaaliev"
           git config --global user.email "Michaaliev1663@gmail.com@gmail.com"
@@ -64,7 +62,7 @@ jobs:
           git push
   
   
-  Deploy:
+  Deploy:    # deploy phase
     needs: build
     runs-on: ubuntu-20.04
     
@@ -72,7 +70,7 @@ jobs:
       - uses: actions/checkout@v2 
       - name: Deploy in EC2
         env:
-            PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY  }}
+            PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY  }}   # credentials added to the secrets
             HOSTNAME : ${{ secrets.EC2_HOSTNAME  }}
             USER_NAME : ${{ secrets.EC2_USER_NAME  }}
             
@@ -80,9 +78,9 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           cd /home/ec2-user
-          curl -O https://raw.githubusercontent.com/Michaaliev/maven-hello-world/dev/docker.sh
+          curl -O https://raw.githubusercontent.com/Michaaliev/maven-hello-world/dev/docker.sh   # downloading the script 'docker.sh' from my scm to the EC2
           chmod +x docker.sh
           ./docker.sh
-          docker kill hello_world
-          docker rm hello_world
+          docker kill hello_world    
+          docker rm hello_world    # cleaning EC2
           '
