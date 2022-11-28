@@ -79,4 +79,3 @@ jobs:
             # clean environment
               sudo docker system prune -af
               sudo docker run --name production "${{ env.REPOSITORY }}:${{ env.NEW_VERSION }}"
-
