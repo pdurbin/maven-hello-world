@@ -4,13 +4,17 @@
   <groupId>com.mycompany.app</groupId>
   <artifactId>my-app</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>my-app</name>
   <url>http://maven.apache.org</url>
 
   <properties>
-      <!-- This property will be set by the Maven Dependency plugin -->
-      <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
+    <!-- This property will be set by the Maven Dependency plugin -->
+    <java.version>11</java.version>
+    <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -89,22 +93,7 @@
               </execution>
           </executions>
       </plugin>
-      <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
-              <fork>true</fork>
-              <!-- Add all the checkers you want to enable here -->
-              <annotationProcessors>
-                  <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
-              </annotationProcessors>
-              <compilerArgs>
-                  <!-- location of the annotated JDK, which comes from a Maven dependency -->
-                  <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
-              </compilerArgs>
-          </configuration>
-      </plugin>
+
     </plugins>
   </build>
 </project>
