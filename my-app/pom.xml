@@ -92,8 +92,8 @@
       <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-              <source>11</source>
-              <target>11</target>
+              <source>8</source>
+              <target>8</target>
               <fork>true</fork>
               <!-- Add all the checkers you want to enable here -->
               <annotationProcessors>
