@@ -26,13 +26,13 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file my-app/pom.xml
+      run: mvn -B package pom.xml
 
     - name: Increment Patch Version
       run: |
         mvn build-helper:parse-version versions:set -DnewVersion='[${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}]'
         mvn versions:commit
-        mvn -B package --file my-app/pom.xml
+        mvn -B package pom.xml
 
     - name: Commit Changes
       uses: stefanzweifel/git-auto-commit-action@v4
