@@ -42,5 +42,5 @@ jobs:
 
     - name: Create, Tag New Docker Image as maven sanpshot
       run: |
-        docker build . --file Dockerfile --tag raananjovani/rfl:${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}-SNAPSHOT        
+        run: docker build . --file Dockerfile --tag my-image-name:v1        
 
