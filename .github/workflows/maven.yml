@@ -39,3 +39,11 @@ jobs:
       with:
         commit_message: "Update version to v${env.version}"
         branch: inrement_version
+
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_SECRET }}
+        password: ${{ secrets.DOCKERHUB_PASS }}
+        repository: raananjovani/rfl
+        tags: latest, ${{ github.run_number }}
