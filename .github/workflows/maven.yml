@@ -46,4 +46,6 @@ jobs:
         username: ${{ secrets.DOCKERHUB_SECRET }}
         password: ${{ secrets.DOCKERHUB_PASS }}
         repository: raananjovani/rfl
-        tags: latest, ${{ mvn versions:commit }}
+        tags: 
+        run: |
+          mvn build-helper:parse-version versions:set -DnewVersion
