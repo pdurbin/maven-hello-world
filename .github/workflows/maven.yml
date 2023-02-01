@@ -40,7 +40,7 @@ jobs:
         commit_message: "Update version to v${env.version}"
         branch: inrement_version
 
-    - name: Create, Tag New Docker Image
+    - name: Create, Tag New Docker Image as maven sanpshot
       run: |
         docker build -t raananjovani/rfl:${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}-SNAPSHOT .        
 
