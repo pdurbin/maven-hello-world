@@ -39,8 +39,3 @@ jobs:
       with:
         commit_message: "Update version to v${env.version}"
         branch: inrement_version
-
-    - name: Create, Tag New Docker Image as maven sanpshot
-      run: |
-        run: docker build . --file Dockerfile --tag my-image-name:v1        
-
