@@ -35,7 +35,7 @@ jobs:
         mvn -B package --file my-app/pom.xml
 
     - name: Commit Changes
-      uses: Raananjovani/maven-hello-world@v3
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: "Update version to v${env.version}"
         branch: inrement_version
