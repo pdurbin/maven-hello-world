@@ -35,11 +35,11 @@ jobs:
         mvn -B package --file my-app/pom.xml
 
     - name: Commit Changes
-      run: |
-        git add -A
-        git commit -m "Update_patch_version"
-        git push
-        
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Update version to v${env.version}"
+        branch: inrement_version
+
     - name: Push to Docker Hub
       uses: docker/build-push-action@v1
       with:
