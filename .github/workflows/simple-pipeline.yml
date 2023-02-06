@@ -1,0 +1,31 @@
+name: simple-pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  patch-version-update:
+    name: update-patch-version
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Increase patch version
+      run: |
+        patch_version=$(sed -n 's/.*<version>.*\.\([0-9]\+\)<\/version>.*/\1/p' pom.xml)
+        new_patch_version=$((patch_version + 1))
+        sed -i "s/<version>.*\.$patch_version<\/version>/<version>1.0.$new_patch_version<\/version>/g" pom.xml
+
+    - name: Commit and push changes
+      uses: actions/github-script@0.8.0
+      with:
+        script: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions Bot"
+          git add pom.xml
+          git commit -m "uodate patch version to 1.0.$new_patch_version"
+          git push origin main
